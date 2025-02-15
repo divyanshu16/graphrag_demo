@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  knowledge-graph-generator:
+    build: .
+    volumes:
+      - ./data:/src/data
+    environment:
+      - FALKORDB_URL=falkordb
+      - FALKORDB_URL_PORT=6379
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - MODEL_PROVIDER=gemini/gemini-2.0-flash-exp
+    command: ["tail", "-f", "/dev/null"]
+    depends_on:
+      - falkordb
+
+  falkordb:
+    image: falkordb/falkordb:latest
+    ports:
+      - "6379:6379"
+      - "3000:3000"
+    volumes:
+      - falkordb_data_2:/data
+
+volumes:
+  falkordb_data_2:

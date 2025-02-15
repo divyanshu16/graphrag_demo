@@ -1,0 +1,7 @@
+graphrag_sdk[litellm]
+unstructured[pdf]
+falkordb
+black
+python-dotenv~=1.0.1
+loguru
+tenacity
